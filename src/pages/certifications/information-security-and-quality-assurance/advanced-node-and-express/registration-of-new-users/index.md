@@ -14,6 +14,29 @@ h1.border.center FCC Advanced Node and Express
 ```pug
 h1.border.center Profile Home
 ```
+---
+title: Check your mongodb Version
+---
+
+The code (and mongo version in Glitch) is for mongodb < v3.
+
+Be sure to update to the latest version via npm in package.json
+
+And update the connection code to:
+
+```
+MongoClient.connect('mongodb://localhost', function (err, client) {
+  if (err) throw err;
+
+  var db = client.db('mytestingdb');
+
+  db.collection('customers').findOne({}, function (findErr, result) {
+    if (findErr) throw findErr;
+    console.log(result.name);
+    client.close();
+  });
+});
+```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or else the tests wouldn't pass
 <br>
